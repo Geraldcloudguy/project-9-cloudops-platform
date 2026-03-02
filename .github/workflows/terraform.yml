@@ -31,13 +31,13 @@ jobs:
         run: terraform validate
 
       - name: Create logs directory
-  run: mkdir -p logs
+        run: mkdir -p logs
 
-- name: Terraform Plan with logging
-  run: terraform plan -out=tfplan > logs/plan_$(date +%Y%m%d_%H%M%S).log || true
+      - name: Terraform Plan with logging
+        run: terraform plan -out=tfplan > logs/plan_$(date +%Y%m%d_%H%M%S).log || true
 
-- name: Upload Terraform logs
-  uses: actions/upload-artifact@v3
-  with:
-    name: terraform-logs
-    path: logs/
+      - name: Upload Terraform logs
+        uses: actions/upload-artifact@v3
+        with:
+          name: terraform-logs
+          path: logs/
